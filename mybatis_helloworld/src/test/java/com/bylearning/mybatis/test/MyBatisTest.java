@@ -28,14 +28,22 @@ public class MyBatisTest {
         // 获取SqlSessionFactory对象
         SqlSessionFactory sqlSessionFactory= sqlSessionFactoryBuilder.build(is);
         // 获取Sql的会话对象sqlSession，是MyBatis提供操作的对象
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
         // 获取UserMapper的代理实现类对象（代理模式，创建了一个UserMapper的实现类）
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         // 调用mapper接口中的方法，实现添加用户的功能
         int result = userMapper.insertUser();
         System.out.println("结果：" + result);
-        // 提交事务
-        sqlSession.commit();
+
+        /*
+        提供sql以及的唯一标识找到sql并执行，唯一标识是namespace.sqlId，这种方法不常用，会有硬编码。
+        int anotherResult = sqlSession.insert("com.bylearning.mybatis.mapper.UserMapper.insertUser");
+        System.out.println(anotherResult);
+        */
+
+        // 提交事务，否则数据库会回滚 如果此前的openSession()方法里加上参数true，就会自动提交不需要手动commit了
+//        sqlSession.commit();
+
         // 关闭session
         sqlSession.close();
     }
