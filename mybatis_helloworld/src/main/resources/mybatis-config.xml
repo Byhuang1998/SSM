@@ -3,15 +3,41 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <!--配置连接数据库的环境-->
+    <!--
+        引入jdbc.properties文件，此后就可以在当前文件中使用${key}的方式访问value
+    -->
+    <properties resource="jdbc.properties" />
+    <!--
+        environments：配置连接数据库的环境
+        default：设置默认使用的环境
+    -->
     <environments default="development">
+        <!--
+            environment：连接数据库的一个具体环境
+            id：环境的唯一标识，不能重复
+        -->
         <environment id="development">
+            <!--
+                transactionManager：设置事务管理器
+                type：设置事务管理的方式
+                type = "JDBC|MANAGED"
+                JDBC：表示使用JDBC中原生的事务管理方式
+                MANAGED：被管理，例如Spring
+            -->
             <transactionManager type="JDBC"/>
+            <!--
+                dataSource：设置数据源
+                type：设置数据源的类型
+                type = "POOLED|UNPOOLED|JNDI"
+                POOLED：表示使用数据库连接池
+                UNPOOLED：表示不使用数据库连接池
+                JNDI：表示使用上下文中的数据源
+            -->
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/ssm?serverTimezone=UTC"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
