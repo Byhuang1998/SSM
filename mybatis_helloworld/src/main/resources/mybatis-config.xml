@@ -7,6 +7,7 @@
         引入jdbc.properties文件，此后就可以在当前文件中使用${key}的方式访问value
     -->
     <properties resource="jdbc.properties" />
+
     <!--
         typeAliases：设置类型别名，即为某个具体的类型设置一个别名
         在MyBatis范围内，该类型可以用别名代替
@@ -17,6 +18,7 @@
         <!--通过包设置类型别名，指定包下所有的类型将全部拥有默认的别名，即类名且不区分大小写-->
         <package name="com.bylearning.mybatis.pojo"/>
     </typeAliases>
+
     <!--
         environments：配置连接数据库的环境
         default：设置默认使用的环境
@@ -53,6 +55,14 @@
     </environments>
     <!--引入mybatis的映射文件-->
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
+<!--        <mapper resource="mapper/UserMapper.xml"/>-->
+        <!--
+            以包的方式引入映射文件，但是必须满足两个条件：
+            1、mapper接口和映射文件所在的包必须一致
+            （虽然二者不在同一个目录下，但是在）
+            2、mapper接口的名字和映射文件的名字必须一致
+            3、这样就可以注释掉上面通过mapper标签引入映射文件的语句了
+        -->
+        <package name="com.bylearning.mybatis.mapper"/>
     </mappers>
 </configuration>
