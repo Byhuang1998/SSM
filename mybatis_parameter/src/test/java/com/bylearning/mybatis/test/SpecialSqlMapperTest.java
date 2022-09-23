@@ -6,6 +6,7 @@ import com.bylearning.mybatis.utils.SqlSessionUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -39,6 +40,16 @@ public class SpecialSqlMapperTest {
         SpecialSqlMapper mapper = sqlSession.getMapper(SpecialSqlMapper.class);
         List<User> list = mapper.getAllUser("t_user");
         System.out.println(list);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testInsertUser() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        SpecialSqlMapper mapper = sqlSession.getMapper(SpecialSqlMapper.class);
+        User user = new User(null, "001", "123456", 33, "男", "12345@qq.com");
+        mapper.insertUser(user);
+        System.out.println(user);
         sqlSession.close();
     }
 }
