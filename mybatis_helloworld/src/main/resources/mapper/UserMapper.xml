@@ -31,7 +31,8 @@
     </select>
 
     <!--注意这里的resultType仍然是User，因为resultType是设置结果类型，是查询的数据要转换为的java类型-->
-    <select id="getAllUsers" resultType="com.bylearning.mybatis.pojo.User">
+    <!--设置别名后，可以用别名代替全路径名-->
+    <select id="getAllUsers" resultType="User">
         select * from t_user;
     </select>
 </mapper>
