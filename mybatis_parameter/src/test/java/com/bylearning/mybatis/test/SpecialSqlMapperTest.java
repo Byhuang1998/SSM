@@ -24,4 +24,21 @@ public class SpecialSqlMapperTest {
         System.out.println(list);
         sqlSession.close();
     }
+
+    @Test
+    public void testDeleteMoreUser() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        SpecialSqlMapper mapper = sqlSession.getMapper(SpecialSqlMapper.class);
+        mapper.deleteMoreUser("4, 5");
+        sqlSession.close();
+    }
+
+    @Test
+    public void testGetAllUser() {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        SpecialSqlMapper mapper = sqlSession.getMapper(SpecialSqlMapper.class);
+        List<User> list = mapper.getAllUser("t_user");
+        System.out.println(list);
+        sqlSession.close();
+    }
 }

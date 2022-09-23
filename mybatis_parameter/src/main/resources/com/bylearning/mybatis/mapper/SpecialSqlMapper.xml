@@ -11,5 +11,12 @@
         select * from t_user where username like "%"#{mohu}"%"
     </select>
 
+    <delete id="deleteMoreUser">
+        delete from t_user where id in (${ids});
+    </delete>
+
+    <select id="getAllUser" resultType="User">
+        select * from ${tablename};
+    </select>
 
 </mapper>
