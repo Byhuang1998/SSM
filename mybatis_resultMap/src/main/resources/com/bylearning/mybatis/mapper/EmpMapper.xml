@@ -5,6 +5,19 @@
 <mapper namespace="com.bylearning.mybatis.mapper.EmpMapper">
 
     <!--
+        字段名和属性名不一致的情况，如何处理映射关系
+        1、为查询的字段设置别名，和属性名保持一致
+        2、当字段符合MySQL的要求使用_，而属性符合java的要求使用驼峰
+        此时可以在MyBatis的核心配置文件中设置一个全局设置，可以自动将下划线映射为驼峰
+        3、使用resultMap自定义映射处理
+
+        处理一对多的映射关系，即一个实体类中包含另一个实体类
+        1、级联
+        2、association
+        3、分步查询
+    -->
+
+    <!--
         resultMap：设置自定义的映射关系
         id：唯一标识
         type：处理映射关系的实体类的类型
@@ -12,6 +25,7 @@
         常用的标签：
         id：处理主键和实体类中属性的映射关系
         result：处理普通字段和实体类中属性的映射关系
+        association：处理多对一的映射关系（处理实体类类型的属性）
         column：数据库中的字段名
         property：实体类中的属性名
     -->
@@ -22,11 +36,58 @@
         <result property="gender" column="gender" />
     </resultMap>
 
-    <select id="getEmpByIdFunc1" resultType="emp">
+    <select id="getEmpById" resultType="emp">
         select * from t_emp where emp_id = #{id};
     </select>
 
-    <select id="getEmpById" resultMap="empResultMap">
-        select * from t_emp where emp_id = #{id};
+    <resultMap id="empAndDeptResultMapOne" type="emp">
+        <id column="emp_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="gender" property="gender"></result>
+        <result column="dept_id" property="dept.deptId"></result>
+        <result column="dept_name" property="dept.deptName"></result>
+    </resultMap>
+
+    <resultMap id="empAndDeptResultMapTwo" type="emp">
+        <id column="emp_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="gender" property="gender"></result>
+        <!--
+            association：处理多对一的映射关系，处理实体类类型的属性
+            property：设置需要处理映射关系的属性的属性名
+            javaType：设置需要处理的属性的类型
+        -->
+        <association property="dept" javaType="dept">
+            <id column="dept_id" property="deptId"/>
+            <result column="dept_name" property="deptName"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="empAndDeptResultMap" type="emp">
+        <id column="emp_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="gender" property="gender"></result>
+        <!--
+            association：处理多对一的映射关系，处理实体类类型的属性
+            select：设置分步查询的sql的唯一标识
+            column：将查询出的某个字段作为下一步查询的sql的条件
+        -->
+        <association property="dept"
+                     select="com.bylearning.mybatis.mapper.DeptMapper.getDeptByDeptId"
+                     column="dept_id">
+        </association>
+    </resultMap>
+
+    <select id="getEmpAndDept" resultMap="empAndDeptResultMapTwo">
+        select t_emp.*, t_dept.* from t_emp
+        left join t_dept on t_emp.dept_id = t_dept.dept_id
+        where t_emp.emp_id = #{empId};
+    </select>
+
+    <select id="getEmpAndDeptByEmpIdStepOne" resultMap="empAndDeptResultMap">
+        select * from t_emp where emp_id = #{empId};
     </select>
 </mapper>

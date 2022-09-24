@@ -13,7 +13,9 @@ import java.util.List;
  */
 public interface EmpMapper {
 
-    Emp getEmpByIdFunc1(@Param("id") Integer id);
-
     Emp getEmpById(@Param("id") Integer id);
+
+    Emp getEmpAndDept(@Param("empId") Integer empId);
+
+    Emp getEmpAndDeptByEmpIdStepOne(@Param("empId") Integer empId);
 }
