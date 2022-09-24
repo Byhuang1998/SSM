@@ -37,7 +37,7 @@ public class ResultMapTest {
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
         Emp emp = mapper.getEmpAndDeptByEmpIdStepOne(1);
-        System.out.println(emp);
+        System.out.println(emp.getEmpId());
         sqlSession.close();
     }
 }
