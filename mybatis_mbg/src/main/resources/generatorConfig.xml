@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 本机驱动地址 -->
+    <classPathEntry location="D:\ProgramFiles\maven\repo\mysql\mysql-connector-java\5.1.18\mysql-connector-java-5.1.18.jar"/>
+
+    <!--
+        targetRuntime：执行生成的逆向工程的版本
+        MyBatis3Simple：生成基本的CRUD（清新简洁版）
+        MyBatis3：生成带条件的CRUD（奢华尊享版）
+    -->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- JDBC驱动，参考工程配置的数据源的配置文件，从中获取值填入 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm?serverTimezone=UTC"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!--entity实体类与example类生成策略-->
+        <javaModelGenerator targetPackage="com.bylearning.mybatis.pojo"
+                            targetProject=".\src\main\java">
+            <!--开启子包，即把targetPackage里的路径按 . 切分成目录-->
+            <property name="enableSubPackages" value="true" />
+            <!--把数据库里的字段前后的空格去掉，生成的就是实体类中的属性-->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--MapperXML文件生成策略-->
+        <sqlMapGenerator targetPackage="com.bylearning.mybatis.mapper"
+                         targetProject=".\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--Mapper接口文件生成策略-->
+        <javaClientGenerator targetPackage="com.bylearning.mybatis.mapper"
+                             targetProject=".\src\main\java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!--
+            逆向分析的表
+            tableName设置为*号，可以对应所有表，此时不写domainObjectName
+            domainObjectName属性指定生成出来的实体类的类名
+        -->
+        <table schema="ssm" tableName="t_emp" domainObjectName="Emp"/>
+        <table schema="ssm" tableName="t_dept" domainObjectName="Dept"/>
+
+    </context>
+</generatorConfiguration>
