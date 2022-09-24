@@ -8,4 +8,45 @@
         select * from t_dept where dept_id = #{deptId};
     </select>
 
+    <!--
+        处理一对多的映射关系
+    -->
+    <resultMap id="deptAndEmpResultMapOne" type="dept">
+        <id property="deptId" column="dept_id"/>
+        <result property="deptName" column="dept_name"/>
+        <!--
+            ofType：设置集合类型中存储的数据类型
+        -->
+        <collection property="emps" ofType="emp">
+            <id property="empId" column="emp_id"></id>
+            <result property="empName" column="emp_name"></result>
+            <result property="age" column="age"></result>
+            <result property="gender" column="gender"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="deptAndEmpResultMapTwo" type="dept">
+        <id property="deptId" column="dept_id"/>
+        <result property="deptName" column="dept_name"/>
+        <!--
+            ofType：设置集合类型中存储的数据类型
+        -->
+        <collection property="emps"
+                    select="com.bylearning.mybatis.mapper.EmpMapper.getEmpByDeptId"
+                    column="dept_id"
+                    fetchType="eager">
+        </collection>
+    </resultMap>
+
+    <select id="getDeptAndEmpById" resultMap="deptAndEmpResultMapOne">
+        select t_dept.*, t_emp.*
+        from t_dept left join t_emp
+        on t_dept.dept_id = t_emp.dept_id
+        where t_dept.dept_id = #{deptId}
+    </select>
+
+    <select id="getDeptAndEmpByStep" resultMap="deptAndEmpResultMapTwo">
+        select * from t_dept where dept_id = #{deptId};
+    </select>
+
 </mapper>

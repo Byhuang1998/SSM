@@ -15,6 +15,8 @@ public interface EmpMapper {
 
     Emp getEmpById(@Param("id") Integer id);
 
+    List<Emp> getEmpByDeptId(@Param("deptId") Integer deptId);
+
     Emp getEmpAndDept(@Param("empId") Integer empId);
 
     Emp getEmpAndDeptByEmpIdStepOne(@Param("empId") Integer empId);

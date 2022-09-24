@@ -40,6 +40,10 @@
         select * from t_emp where emp_id = #{id};
     </select>
 
+    <select id="getEmpByDeptId" resultType="emp">
+        select * from t_emp where dept_id = #{deptId};
+    </select>
+
     <resultMap id="empAndDeptResultMapOne" type="emp">
         <id column="emp_id" property="empId"></id>
         <result column="emp_name" property="empName"></result>
