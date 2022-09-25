@@ -33,7 +33,7 @@ public class IOCByXMLTest {
     @Test
     public void testIOC() {
         ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc.xml");
-        Student student = ioc.getBean("student6", Student.class);
+        Student student = ioc.getBean("student7", Student.class);
         System.out.println(student);
     }
 
