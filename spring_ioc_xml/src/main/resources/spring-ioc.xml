@@ -72,6 +72,17 @@
                 <property name="cname" value="终极二班"/>
             </bean>
         </property>
+        <property name="hobby">
+            <array>
+                <!--
+                    如果数组里是普通的字面类型，用value标签即可
+                    如果是引用类型，用ref标签
+                -->
+                <value>唱歌</value>
+                <value>打球</value>
+                <value>下棋</value>
+            </array>
+        </property>
     </bean>
 
     <bean id="clazz1" class="com.bylearning.spring.pojo.Clazz">
