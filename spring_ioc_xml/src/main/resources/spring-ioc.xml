@@ -83,6 +83,18 @@
                 <value>下棋</value>
             </array>
         </property>
+        <property name="teacherMap" ref="teacherMap"/>
+
+    </bean>
+
+    <bean id="teacher1" class="com.bylearning.spring.pojo.Teacher">
+        <property name="tid" value="001"/>
+        <property name="tname" value="老师1"/>
+    </bean>
+
+    <bean id="teacher2" class="com.bylearning.spring.pojo.Teacher">
+        <property name="tid" value="002"/>
+        <property name="tname" value="老师2"/>
     </bean>
 
     <bean id="clazz1" class="com.bylearning.spring.pojo.Clazz">
@@ -112,4 +124,9 @@
         <ref bean="student2"/>
         <ref bean="student3"/>
     </util:list>
+
+    <util:map id="teacherMap">
+        <entry key="1" value-ref="teacher1"/>
+        <entry key="2" value-ref="teacher2"/>
+    </util:map>
 </beans>
