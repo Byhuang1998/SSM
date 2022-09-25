@@ -18,6 +18,8 @@ public class Student implements Person {
 
     private double score;
 
+    private Clazz clazz;
+
     public Student() {
     }
 
@@ -75,6 +77,14 @@ public class Student implements Person {
         this.score = score;
     }
 
+    public Clazz getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -83,6 +93,7 @@ public class Student implements Person {
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", score=" + score +
+                ", clazz=" + clazz +
                 '}';
     }
 }

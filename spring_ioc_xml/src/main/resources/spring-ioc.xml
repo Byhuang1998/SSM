@@ -25,7 +25,7 @@
         <constructor-arg value="23" name="age"/>
     </bean>
 
-    <bean id="student4" class="com.bylearning.spring.pojo.Student">
+    <bean id="student3" class="com.bylearning.spring.pojo.Student">
         <property name="sid" value="1003"/>
         <!--
             <：&lt;
@@ -38,5 +38,44 @@
         <property name="gender"><null/></property>
         <property name="age" value="24"/>
         <property name="score" value="100"/>
+    </bean>
+
+    <bean id="student4" class="com.bylearning.spring.pojo.Student">
+        <property name="sid" value="1004"/>
+        <property name="sname" value="赵六"/>
+        <property name="age" value="24"/>
+        <property name="gender" value="男"/>
+        <!--ref：引用IOC容器中的某个bean的id-->
+        <property name="clazz" ref="clazz1"/>
+    </bean>
+
+    <bean id="student5" class="com.bylearning.spring.pojo.Student">
+        <property name="sid" value="1004"/>
+        <property name="sname" value="赵六"/>
+        <property name="age" value="24"/>
+        <property name="gender" value="男"/>
+        <!--ref：引用IOC容器中的某个bean的id-->
+        <property name="clazz" ref="clazz1"/>
+        <property name="clazz.cid" value="001"/>
+        <property name="clazz.cname" value="远大前程班"/>
+    </bean>
+
+    <bean id="student6" class="com.bylearning.spring.pojo.Student">
+        <property name="sid" value="1004"/>
+        <property name="sname" value="赵六"/>
+        <property name="age" value="24"/>
+        <property name="gender" value="男"/>
+        <!--ref：引用IOC容器中的某个bean的id-->
+        <property name="clazz">
+            <bean class="com.bylearning.spring.pojo.Clazz">
+                <property name="cid" value="001"/>
+                <property name="cname" value="终极二班"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="clazz1" class="com.bylearning.spring.pojo.Clazz">
+        <property name="cid" value="001"/>
+        <property name="cname" value="终极一班"/>
     </bean>
 </beans>
