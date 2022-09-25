@@ -1,5 +1,6 @@
 package com.bylearning.spring.test;
 
+import com.bylearning.spring.pojo.Clazz;
 import com.bylearning.spring.pojo.Person;
 import com.bylearning.spring.pojo.Student;
 import org.junit.Test;
@@ -34,5 +35,12 @@ public class IOCByXMLTest {
         ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc.xml");
         Student student = ioc.getBean("student6", Student.class);
         System.out.println(student);
+    }
+
+    @Test
+    public void testDI() {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc.xml");
+        Clazz clazz = ioc.getBean("clazz2", Clazz.class);
+        System.out.println(clazz);
     }
 }

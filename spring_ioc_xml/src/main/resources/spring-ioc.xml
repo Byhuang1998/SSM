@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="studentOne" class="com.bylearning.spring.pojo.Student">
         <!--
@@ -88,5 +88,28 @@
     <bean id="clazz1" class="com.bylearning.spring.pojo.Clazz">
         <property name="cid" value="001"/>
         <property name="cname" value="终极一班"/>
+        <property name="students">
+            <list>
+                <ref bean="studentOne"/>
+                <ref bean="student2"/>
+                <ref bean="student3"/>
+            </list>
+        </property>
     </bean>
+
+    <bean id="clazz2" class="com.bylearning.spring.pojo.Clazz">
+        <property name="cid" value="001"/>
+        <property name="cname" value="终极一班"/>
+        <property name="students" ref="students">
+        </property>
+    </bean>
+
+    <!--
+        配置一个集合类型的bean，需要使用util的约束
+    -->
+    <util:list id="students">
+        <ref bean="studentOne"/>
+        <ref bean="student2"/>
+        <ref bean="student3"/>
+    </util:list>
 </beans>

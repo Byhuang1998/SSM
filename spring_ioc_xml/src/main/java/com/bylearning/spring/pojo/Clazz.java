@@ -1,5 +1,7 @@
 package com.bylearning.spring.pojo;
 
+import java.util.List;
+
 /**
  * @author mskj-huangbingyi
  * @version 1.0
@@ -11,6 +13,8 @@ public class Clazz {
     private Integer cid;
 
     private String cname;
+
+    private List<Student> students;
 
     public Clazz() {
     }
@@ -36,11 +40,20 @@ public class Clazz {
         this.cname = cname;
     }
 
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     @Override
     public String toString() {
         return "Clazz{" +
                 "cid=" + cid +
                 ", cname='" + cname + '\'' +
+                ", students=" + students +
                 '}';
     }
 }
