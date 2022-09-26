@@ -7,4 +7,5 @@ package com.bylearning.spring.service;
  * @description TODO
  */
 public interface UserService {
+    void saveUser();
 }

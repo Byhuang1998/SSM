@@ -7,4 +7,5 @@ package com.bylearning.spring.dao;
  * @description TODO
  */
 public interface UserDao {
+    void saveUser();
 }
