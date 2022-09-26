@@ -1,9 +1,7 @@
 package com.bylearning.spring.test;
 
-import com.bylearning.spring.pojo.Student;
 import com.bylearning.spring.pojo.User;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
