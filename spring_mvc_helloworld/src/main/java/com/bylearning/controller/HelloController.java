@@ -1,6 +1,7 @@
 package com.bylearning.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author mskj-huangbingyi
@@ -11,5 +12,14 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class HelloController {
 
+    @RequestMapping(value = "/")
+    public String protal() {
+        // 将逻辑视图返回
+        return "index";
+    }
 
+    @RequestMapping(value = "/hello")
+    public String hello() {
+        return "success";
+    }
 }
