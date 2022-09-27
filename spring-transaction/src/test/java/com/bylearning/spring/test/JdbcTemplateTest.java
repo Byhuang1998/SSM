@@ -1,11 +1,16 @@
 package com.bylearning.spring.test;
 
+import com.bylearning.spring.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author mskj-huangbingyi
@@ -26,5 +31,26 @@ public class JdbcTemplateTest {
     public void testInsert() {
         String sql = "insert into t_user values(null, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, "root", "123", 23, "女", "123@qq.com");
+    }
+
+    @Test
+    public void testGetUserById() {
+        String sql = "select * from t_user where id = ?";
+        User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), 1);
+        System.out.println(user);
+    }
+
+    @Test
+    public void testGetAllUser() {
+        String sql = "select * from t_user";
+        List<User> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        System.out.println(list);
+    }
+
+    @Test
+    public void testGetCount() {
+        String sql = "select count(*) from t_user";
+        Integer cnt = jdbcTemplate.queryForObject(sql, Integer.class);
+        System.out.println(cnt);
     }
 }
