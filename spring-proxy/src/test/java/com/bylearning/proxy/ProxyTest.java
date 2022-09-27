@@ -30,6 +30,6 @@ public class ProxyTest {
     public void testDynamicProxy() {
         ProxyFactory proxyFactory = new ProxyFactory(new CalculatorImpl());
         Calculator proxy = (Calculator) proxyFactory.getProxy();
-        proxy.div(1, 0);
+        proxy.div(1, 1);
     }
 }
