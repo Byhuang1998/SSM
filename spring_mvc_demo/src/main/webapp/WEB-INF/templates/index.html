@@ -17,10 +17,13 @@
     <br>
     <a th:href="@{/test/rest/1/username}">测试@RequestMapping注解value属性中的占位符</a>
     <br>
+    <hr>
     <form th:action="@{/param/pojo}" method="post">
         用户名<input th:type="text" name="username"/>
         密码<input th:type="password" name="password"/>
         <input th:type="submit" value="登录"/>
     </form>
+    <hr>
+    <a th:href="@{/test/mav}">测试ModelAndView</a>
 </body>
 </html>
