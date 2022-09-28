@@ -26,4 +26,8 @@ public class EmployeeService {
     public void save(Employee employee) {
         employeeDao.save(employee);
     }
+
+    public Employee get(Integer id) {
+        return employeeDao.get(id);
+    }
 }

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.Collection;
 
@@ -44,4 +46,20 @@ public class EmployeeController {
         return "redirect:/employee";
     }
 
+    @GetMapping("/employee/{id}")
+    public String getEmployeeById(@PathVariable("id") Integer id, Model model) {
+        // 根据id查询员工信息
+        Employee employee = employeeService.get(id);
+        // 将员工信息共享到请求域中
+        model.addAttribute("employee", employee);
+        // 跳转到employut_update页面
+        return "employee_update";
+    }
+
+    @PutMapping("/employee")
+    public String updateEmployee(Employee employee) {
+        employeeService.save(employee);
+        // 重新访问列表功能
+        return "redirect:/employee";
+    }
 }
