@@ -64,7 +64,7 @@ public class TestRequestMappingController {
     }
 
     @RequestMapping(value = "/test/rest/{id}/{username}")
-    public String testRest(@PathVariable Integer id, @PathVariable Integer username) {
+    public String testRest(@PathVariable Integer id, @PathVariable String username) {
         System.out.println("id is " + id + ", username is " + username);
         return "success";
     }
