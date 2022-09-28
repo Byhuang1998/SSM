@@ -1,8 +1,12 @@
 package com.bylearning.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 /**
  * @author mskj-huangbingyi
@@ -27,5 +31,28 @@ public class TestScopeController {
         // 设置逻辑视图
         mav.setViewName("success");
         return mav;
+    }
+    /**
+     * 2、通过Model向请求域共享数据
+     * 3、通过ModelMap向请求域共享数据
+     * 4、通过Map向请求域共享数据
+     * 5、其实在底层，三者最终都通过BindAwareModelMap创建
+     */
+    @RequestMapping("/test/model")
+    public String testModel(Model model) {
+        model.addAttribute("testRequestScope", "hello, Model");
+        return "success";
+    }
+
+    @RequestMapping("/test/modelMap")
+    public String testModelMap(ModelMap modelMap) {
+        modelMap.addAttribute("testRequestScope", "hello, Model");
+        return "success";
+    }
+
+    @RequestMapping("/test/map")
+    public String testMap(Map<String, Object> map) {
+        map.put("testRequestScope", "hello, Model");
+        return "success";
     }
 }
