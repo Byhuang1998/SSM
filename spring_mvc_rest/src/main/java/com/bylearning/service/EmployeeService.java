@@ -1,8 +1,11 @@
 package com.bylearning.service;
 
 import com.bylearning.dao.EmployeeDao;
+import com.bylearning.pojo.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 /**
  * @author mskj-huangbingyi
@@ -15,4 +18,8 @@ public class EmployeeService {
 
     @Autowired
     private EmployeeDao employeeDao;
+
+    public Collection<Employee> getAllEmployee() {
+        return employeeDao.getAll();
+    }
 }

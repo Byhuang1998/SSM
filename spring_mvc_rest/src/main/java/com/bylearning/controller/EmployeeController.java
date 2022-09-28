@@ -1,8 +1,18 @@
 package com.bylearning.controller;
 
+import com.bylearning.pojo.Employee;
 import com.bylearning.service.EmployeeService;
+import com.sun.media.sound.ModelDirectedPlayer;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * @author mskj-huangbingyi
@@ -22,6 +32,13 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-
+    @GetMapping("/employee")
+    public String getAllEmployee(Model model) {
+        Collection<Employee> employees = employeeService.getAllEmployee();
+        // 将所有的员工信息在请求域中共享
+        model.addAttribute("employees", employees);
+//        return "employee_list";
+        return "employee_list";
+    }
 
 }
