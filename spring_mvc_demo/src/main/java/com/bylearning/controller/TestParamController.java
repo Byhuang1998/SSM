@@ -27,6 +27,8 @@ import javax.servlet.http.HttpSession;
  * 6、通过控制器方法的实体类类型的形参获取请求参数
  * 需要在控制器方法的形参设置实体类类型的形参，要保证实体类中的属性名和请求参数的名字一致
  * 可以通过实体类类型的形参获取请求参数
+ * 7、解决获取请求参数乱码的问题
+ * 在web.xml配置一下编码过滤器
  */
 @Controller
 public class TestParamController {
