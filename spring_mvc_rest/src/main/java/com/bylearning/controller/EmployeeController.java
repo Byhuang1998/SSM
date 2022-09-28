@@ -2,17 +2,13 @@ package com.bylearning.controller;
 
 import com.bylearning.pojo.Employee;
 import com.bylearning.service.EmployeeService;
-import com.sun.media.sound.ModelDirectedPlayer;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collection;
-import java.util.Map;
 
 /**
  * @author mskj-huangbingyi
@@ -39,6 +35,13 @@ public class EmployeeController {
         model.addAttribute("employees", employees);
 //        return "employee_list";
         return "employee_list";
+    }
+
+    @PostMapping("/employee")
+    public String addEmployee(Employee employee) {
+        employeeService.save(employee);
+        // 重新访问列表功能
+        return "redirect:/employee";
     }
 
 }

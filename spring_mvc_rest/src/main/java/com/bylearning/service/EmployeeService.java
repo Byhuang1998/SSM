@@ -22,4 +22,8 @@ public class EmployeeService {
     public Collection<Employee> getAllEmployee() {
         return employeeDao.getAll();
     }
+
+    public void save(Employee employee) {
+        employeeDao.save(employee);
+    }
 }
