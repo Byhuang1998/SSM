@@ -1,5 +1,6 @@
 package com.bylearning.controller;
 
+import com.bylearning.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,7 +23,10 @@ import javax.servlet.http.HttpSession;
  * 3、@RequestParam注解将请求参数和控制器方法的形参绑定
  * 三个属性：value, required, defaultValue
  * 4、@RequestHeader：将请求头信息和控制器方法的形参绑定
- * 4、@CookieValue：将cookie数据和控制器方法的形参绑定
+ * 5、@CookieValue：将cookie数据和控制器方法的形参绑定
+ * 6、通过控制器方法的实体类类型的形参获取请求参数
+ * 需要在控制器方法的形参设置实体类类型的形参，要保证实体类中的属性名和请求参数的名字一致
+ * 可以通过实体类类型的形参获取请求参数
  */
 @Controller
 public class TestParamController {
@@ -45,6 +49,12 @@ public class TestParamController {
         System.out.println("username:" + userName + ", password:" + password);
         System.out.println("referer:" + referer);
         System.out.println("jsessionId:" + jsessionId);
+        return "success";
+    }
+
+    @RequestMapping(value = "/param/pojo")
+    public String getParamByPojo(User user) {
+        System.out.println(user);
         return "success";
     }
 }
