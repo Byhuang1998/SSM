@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.UUID;
 
 /**
  * @author mskj-huangbingyi
@@ -29,7 +30,10 @@ public class FileUpAndDownController {
     @RequestMapping("/test/up")
     public String testUp(MultipartFile photo, HttpSession session) throws IOException {
         String filename = photo.getOriginalFilename();
-        System.out.println(filename);
+        String suffixName = filename.substring(filename.lastIndexOf("."));
+        // 获取uuid
+        String uuid = UUID.randomUUID().toString();
+        filename = uuid + suffixName;
         ServletContext servletContext = session.getServletContext();
         String photoPath = servletContext.getRealPath("photo");
         File file = new File(photoPath);
