@@ -26,7 +26,7 @@ import java.util.Map;
  * b> 在SpringMVC的配置文件中设置<mvc:annotation-driven />
  * c> 将需要转换为json字符串的java对象直接作为控制器方法的返回值，使用@ResponseBody注解标识控制器方法
  * 就可以将java对象直接转换为json字符串，并响应到浏览器
- *
+ * 5、@RestController注解 相当于@Controller + @ResponseBody
  *
  */
 @Controller
