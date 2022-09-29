@@ -2,9 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
     <title>employee_list</title>
 </head>
 <body>
+
+<div id="app">
     <table>
         <tr>
             <th>employee_list</th>
@@ -22,10 +27,34 @@
             <td th:text="${employee.email}"></td>
             <td th:text="${employee.gender}"></td>
             <td>
-                <a href="">delete</a>
+                <a @click="deleteEmployee" th:href="@{'/employee/' + ${employee.id}}">delete</a>
                 <a th:href="@{'/employee/' + ${employee.id}}">update</a>
             </td>
         </tr>
     </table>
+</div>
+
+    <form method="post">
+        <input type="hidden" name="_method" value="delete">
+    </form>
+
+    <script type="text/javascript">
+        var vue = new Vue({
+            el:"#app",
+            methods: {
+                deleteEmployee() {
+                    // 获取form表单
+                    var form = document.getElementsByTagName("form")[0];
+                    // 将超链接的href属性值赋值给form表单的action属性
+                    // event.target表示当前触发事件的标签
+                    form.action = event.target.href;
+                    // 将表单提交
+                    form.submit();
+                    // 阻止超链接的默认行为
+                    event.preventDefault();
+                }
+            }
+        })
+    </script>
 </body>
 </html>

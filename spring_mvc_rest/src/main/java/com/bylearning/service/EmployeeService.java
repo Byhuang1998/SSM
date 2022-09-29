@@ -30,4 +30,8 @@ public class EmployeeService {
     public Employee get(Integer id) {
         return employeeDao.get(id);
     }
+
+    public void delete(Integer id) {
+        employeeDao.delete(id);
+    }
 }
