@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -17,9 +18,29 @@ import java.io.*;
  * @data 2022/9/29 17:06
  * @description TODO
  * ResponseEntity：可以作为控制器方法的返回值，表示响应到浏览器完整的响应报文
+ *
+ * 文件上传的要求：
+ * 1、form表单的请求方式必须为post
+ * 2、form表单必须设置属性enctype="multipart/form-data"
  */
 @Controller
 public class FileUpAndDownController {
+
+    @RequestMapping("/test/up")
+    public String testUp(MultipartFile photo, HttpSession session) throws IOException {
+        String filename = photo.getOriginalFilename();
+        System.out.println(filename);
+        ServletContext servletContext = session.getServletContext();
+        String photoPath = servletContext.getRealPath("photo");
+        File file = new File(photoPath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        String finalPath = photoPath + File.separator + filename;
+        // 上传文件
+        photo.transferTo(new File(finalPath));
+        return "success";
+    }
 
     @RequestMapping("/test/down")
     public ResponseEntity<byte[]> testResponseEntity(HttpSession session) throws IOException {
