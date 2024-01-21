@@ -9,5 +9,5 @@
         id：bean的唯一标识，不能重复
         class：设置bean对象所对应的类型
     -->
-    <bean id="hello-world" class="com.bylearning.spring.pojo.HelloWorld"/>
+    <bean id="hello-world" class="com.bylearning.spring.pojo.HelloWorld" scope="prototype"/>
 </beans>
