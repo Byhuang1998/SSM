@@ -19,6 +19,9 @@ public class HelloWorldTest {
         ApplicationContext ioc = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 获取IOC容器中的bean
         HelloWorld helloworld = (HelloWorld)ioc.getBean("hello-world");
+        HelloWorld helloworld1 = (HelloWorld)ioc.getBean("hello-world");
+        System.out.println(helloworld);
+        System.out.println(helloworld1); // 两个地址相同，验证Spring窗器创建对象是单例模式
         helloworld.sayHello();
     }
 }
