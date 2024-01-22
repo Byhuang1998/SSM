@@ -16,7 +16,4 @@
         <property name="helloSpring" ref="hello-spring"></property>
     </bean>
 
-    <import resource="applicationContext-user.xml"></import>
-    <import resource="applicationContext-order.xml"></import>
-
 </beans>
