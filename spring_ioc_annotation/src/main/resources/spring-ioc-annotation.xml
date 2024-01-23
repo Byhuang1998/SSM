@@ -16,5 +16,7 @@
         use-default-filters="true"（默认），所设置的包下所有的类都需要扫描，此时可以使用排除扫描
         use-default-filters="false"，所设置的包下所有的类都不需要扫描，此时可以使用包含扫描
     -->
-    <context:component-scan base-package="com.bylearning.spring" />
+    <context:component-scan base-package="com.bylearning.spring">
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />-->
+    </context:component-scan>
 </beans>
