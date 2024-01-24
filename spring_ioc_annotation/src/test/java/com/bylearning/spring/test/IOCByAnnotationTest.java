@@ -1,8 +1,10 @@
 package com.bylearning.spring.test;
 
+import com.bylearning.spring.config.SpringConfiguration;
 import com.bylearning.spring.controller.UserController;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
@@ -41,7 +43,8 @@ public class IOCByAnnotationTest {
 
     @Test
     public void test() {
-        ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc-annotation.xml");
+//        ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc-annotation.xml");
+        ApplicationContext ioc = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         UserController us = ioc.getBean("userController", UserController.class);
         us.saveUser();
     }
