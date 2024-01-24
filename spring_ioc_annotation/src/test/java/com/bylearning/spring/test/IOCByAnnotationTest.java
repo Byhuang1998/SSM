@@ -7,6 +7,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 
 /**
  * @author mskj-huangbingyi
@@ -42,10 +46,13 @@ public class IOCByAnnotationTest {
      */
 
     @Test
-    public void test() {
+    public void test() throws SQLException {
 //        ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc-annotation.xml");
         ApplicationContext ioc = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         UserController us = ioc.getBean("userController", UserController.class);
+        DataSource dataSource = (DataSource) ioc.getBean(DataSource.class);
+        Connection connection = dataSource.getConnection();
+        System.out.println(connection);
         us.saveUser();
     }
 }
