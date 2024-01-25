@@ -1,9 +1,8 @@
 package com.bylearning.controller;
 
-import com.bylearning.config.SpringConfiguration;
+import com.bylearning.WebApplicationContextUtils;
 import com.bylearning.service.UserService;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +14,7 @@ public class DemoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        ApplicationContext ioc = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+        ApplicationContext ioc = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
         UserService us = ioc.getBean(UserService.class);
         us.saveUser();
     }
