@@ -1,8 +1,9 @@
 package com.bylearning.controller;
 
+import com.bylearning.config.SpringConfiguration;
 import com.bylearning.service.UserService;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ public class DemoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
-        ApplicationContext ioc = new ClassPathXmlApplicationContext("springmvc.xml");
+        ApplicationContext ioc = new AnnotationConfigApplicationContext(SpringConfiguration.class);
         UserService us = ioc.getBean(UserService.class);
         us.saveUser();
     }
