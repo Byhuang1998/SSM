@@ -1,8 +1,8 @@
 package com.bylearning.controller;
 
-import com.bylearning.WebApplicationContextUtils;
 import com.bylearning.service.UserService;
 import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
