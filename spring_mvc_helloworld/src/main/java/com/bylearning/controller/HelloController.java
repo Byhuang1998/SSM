@@ -15,11 +15,11 @@ public class HelloController {
     @RequestMapping(value = "/")
     public String protal() {
         // 将逻辑视图返回
-        return "index";
+        return "index.jsp";
     }
 
     @RequestMapping(value = "/hello")
     public String hello() {
-        return "success";
+        return "success.jsp";
     }
 }
