@@ -3,7 +3,11 @@ package com.bylearning.controller;
 import com.bylearning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author mskj-huangbingyi
@@ -26,6 +30,19 @@ public class HelloController {
     @RequestMapping(value = "/hello")
     public String hello() {
         System.out.println(userService);
+        return "success";
+    }
+
+    @RequestMapping("/model")
+    public ModelAndView model(ModelAndView modelAndView) {
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }
+
+    @RequestMapping("/http")
+    public String model(HttpServletRequest httpServletRequest) {
+        System.out.println(httpServletRequest);
+        httpServletRequest.setAttribute("username", "zhangsan");
         return "success";
     }
 }
