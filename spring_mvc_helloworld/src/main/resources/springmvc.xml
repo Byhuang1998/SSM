@@ -7,22 +7,8 @@
     <!--扫描控制层组件-->
     <context:component-scan base-package="com.bylearning.controller"/>
 
-<!--    <bean id="viewResolver" class="org.thymeleaf.spring5.view.ThymeleafViewResolver">-->
-<!--        <property name="order" value="1"/>-->
-<!--        <property name="characterEncoding" value="UTF-8" />-->
-<!--        <property name="templateEngine">-->
-<!--            <bean class="org.thymeleaf.spring5.SpringTemplateEngine">-->
-<!--                <property name="templateResolver">-->
-<!--                    <bean class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">-->
-<!--                        &lt;!&ndash;视图前缀&ndash;&gt;-->
-<!--                        <property name="prefix" value="/WEB-INF/templates/" />-->
-<!--                        &lt;!&ndash;视图后缀&ndash;&gt;-->
-<!--                        <property name="suffix" value=".html" />-->
-<!--                        <property name="templateMode" value="HTML5" />-->
-<!--                        <property name="characterEncoding" value="UTF-8"/>-->
-<!--                    </bean>-->
-<!--                </property>-->
-<!--            </bean>-->
-<!--        </property>-->
-<!--    </bean>-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
 </beans>

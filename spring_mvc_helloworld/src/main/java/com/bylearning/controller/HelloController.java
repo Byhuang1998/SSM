@@ -1,5 +1,7 @@
 package com.bylearning.controller;
 
+import com.bylearning.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,14 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HelloController {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/")
     public String protal() {
         // 将逻辑视图返回
-        return "index.jsp";
+        return "index";
     }
 
     @RequestMapping(value = "/hello")
     public String hello() {
-        return "success.jsp";
+        System.out.println(userService);
+        return "success";
     }
 }
