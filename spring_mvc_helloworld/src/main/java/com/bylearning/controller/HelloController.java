@@ -1,10 +1,12 @@
 package com.bylearning.controller;
 
+import com.bylearning.entity.User;
 import com.bylearning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,5 +46,20 @@ public class HelloController {
         System.out.println(httpServletRequest);
         httpServletRequest.setAttribute("username", "zhangsan");
         return "success";
+    }
+
+    @RequestMapping("/return")
+    @ResponseBody
+    public String returnData() {
+        return "return";
+    }
+
+    @RequestMapping("/user")
+    @ResponseBody
+    public User returnObject() {
+        User user = new User();
+        user.setName("zhangsan");
+        user.setAge(23);
+        return user;
     }
 }
